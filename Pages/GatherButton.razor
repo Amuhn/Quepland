@@ -100,6 +100,10 @@
                 int randSpeed = (Extensions.GetGaussianRandomInt(itemToGather.GatherSpeed, itemToGather.GatherSpeed / 2));
                 int speed = Math.Max((int)(randSpeed * GameState.GetPlayer().GetGatherSpeed(itemToGather.ActionRequired)), 50);
                 GameState.gatherTimer.Change(speed, speed);
+                if (!playerHasLevels){
+                    StopGathering();
+                    messageManager.AddMessage("You are no longer able to gather " + gatherItem );
+                }
 
                 if (GameState.currentGatherItem.ActionRequired == "Mining" && limitedOre)
                 {
